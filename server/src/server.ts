@@ -1,7 +1,8 @@
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
-import { userJoin, userLeft, getUSers } from './util/users'
+import { userJoin, userLeft, getUsers } from './utils/users'
+
 
 const app = express()
 
@@ -16,7 +17,7 @@ io.on('connection', socket => {
       socket.emit('username-taken')
     } else {
       socket.emit('username-submitted-successfully')
-      io.to('typeScript Chat').emit('get-connected-users', getUSers())
+      io.to('typeScript Chat').emit('get-connected-users', getUsers())
     }
   })
 
